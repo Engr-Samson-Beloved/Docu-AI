@@ -39,25 +39,186 @@ function closeModal(modalId) {
 }
 
 // Popup message functionality
+// window.onload = function() {
+//     setTimeout(function() {
+//         const popup = document.getElementById('author-popup');
+//         if (popup) {
+//             popup.style.display = 'flex';
+//         }
+//     }, 5000);
+// };
+
+// function closePopup() {
+//     const popup = document.getElementById('author-popup');
+//     if (popup) {
+//         popup.style.display = 'none';
+//     }
+// }
+// Existing code
 window.onload = function() {
-    setTimeout(function() {
-        const popup = document.getElementById('author-popup');
-        if (popup) {
-            popup.style.display = 'flex';
+    const modal = document.getElementById('feature-modal');
+    const closeButtons = document.querySelectorAll('.close');
+    
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            closeModal();
+        });
+    });
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal();
         }
-    }, 5000);
+    };
 };
 
-function closePopup() {
-    const popup = document.getElementById('author-popup');
-    if (popup) {
-        popup.style.display = 'none';
-    }
-}
+// Function to handle feature clicks and load external content
 function handleFeatureClick(featureName) {
-    window.location.href = "search.html"
-    // alert("You clicked on " + featureName + "!");
-    // Implement further functionality here
-    
+    const featurePages = {
+        "Writing Assistance": "write.html",
+        "Summarization": "search.html",
+        "Translation": "translation.html",
+        "Data Extraction": "data-extraction.html",
+        "Formatting": "format.html"
+    };
+
+    // Update the modal title with the feature name
+    document.getElementById('modal-title').innerText = featureName;
+
+    // Load the specific feature page into the iframe
+    document.getElementById('feature-frame').src = featurePages[featureName];
+
+    // Show the modal
+    document.getElementById('feature-modal').style.display = 'flex';
 }
 
+// Function to close the modal
+function closeModal() {
+    document.getElementById('feature-modal').style.display = 'none';
+}
+
+// Function to open the Summarization Feature modal
+function openSummarizationFeature() {
+    const modal = document.getElementById('summarization-feature');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+// Function to close modals
+function closeFeatureModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function closeModal() {
+    document.getElementById('feature-modal').style.display = 'none';
+}
+
+
+
+// Function to close modals
+function closeFeatureModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Summarization API Integration
+// Function to handle the Summarization API request
+document.getElementById('summarization-form').addEventListener('submit', async function(event) {
+    event.preventDefault();  // Prevent the form from submitting the usual way
+
+    const inputText = document.getElementById('summarize-input').value;
+    
+    if (!inputText.trim()) {
+        alert("Please enter text to summarize.");
+        return;
+    }
+
+    // Show loading message
+    document.getElementById('summary-result').innerText = "Summarizing...";
+
+    try {
+        // API call to Hugging Face
+        const response = await fetch('https://api-inference.huggingface.co/models/facebook/bart-large-cnn', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer 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',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                inputs: inputText
+            })
+        });
+
+        // Handle response
+        const result = await response.json();
+        
+        if (response.ok && result[0]?.summary_text) {
+            // Output the summary
+            document.getElementById('summary-result').innerText = result[0].summary_text;
+        } else {
+            // Display error message
+            throw new Error(result.error || "An error occurred during summarization.");
+        }
+    } catch (error) {
+        // Handle errors (network or API errors)
+        console.error('Error:', error);
+        document.getElementById('summary-result').innerText = "Could not summarize the text. Please try again.";
+    }
+});
+
+
+
+// Event listener to show the Writing Assistance feature pane
+document.getElementById('writing-assist-feature').addEventListener('click', function() {
+    const featurePane = document.getElementById('writing-assistance');
+    
+    if (featurePane.style.display === 'block') {
+        featurePane.style.display = 'none';  // Close it if already open
+    } else {
+        featurePane.style.display = 'block';  // Open the pane if it's not visible
+    }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const getStartedBtn = document.getElementById('Start');
+    const introPane = document.getElementById('intro-pane');
+    const slides = document.querySelectorAll('.intro-slide');
+    let currentSlide = 0;
+
+    getStartedBtn.addEventListener('click', () => {
+        introPane.style.display = 'flex';
+        showSlide(currentSlide);
+    });
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    document.querySelectorAll('.next-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            currentSlide++;
+            if (currentSlide >= slides.length) {
+                closeIntroPane();
+            } else {
+                showSlide(currentSlide);
+            }
+        });
+    });
+
+    document.querySelector('.close-btn').addEventListener('click', closeIntroPane);
+
+    function closeIntroPane() {
+        introPane.style.display = 'none';
+        currentSlide = 0; // Reset slide index for future use
+    }
+});

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #writing-assistance {
+            display: block; /* Hidden until the feature is clicked */
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        #writing-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        #writing-assist-btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #writing-assist-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #writing-output {
+            margin-top: 20px;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+  <div id="writing-assistance" class="feature-pane">
+    <h2>Writing Assistance</h2>
+    <p>Generate content, improve grammar, or enhance writing style.</p>
+    
+    <label for="writing-input">Enter your text:</label>
+    <textarea id="writing-input" rows="6" placeholder="Enter text here..."></textarea>
+    
+    <button id="writing-assist-btn">Improve My Writing</button>
+    
+    <h3>Improved Content:</h3>
+    <div id="writing-output"></div>
+</div>  
+</body>
+<script>
+    const huggingFaceApiKey = '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';
+    const apiUrl = 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn'; // Example model for summarization, you can change it to another model if needed
+
+    // Function to handle the writing assistance request
+    document.getElementById('writing-assist-btn').addEventListener('click', function() {
+        const inputText = document.getElementById('writing-input').value;
+
+        if (inputText.trim() === '') {
+            alert('Please enter some text.');
+            return;
+        }
+
+        // Prepare the data for the API request
+        const data = {
+            inputs: inputText
+        };
+
+        // Call the Hugging Face API using fetch
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${huggingFaceApiKey}`
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            // Display the improved content
+            const improvedText = result[0].summary_text ? result[0].summary_text.trim() : 'No enhancement available.';
+            document.getElementById('writing-output').innerHTML = `<p>${improvedText}</p>`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('writing-output').innerHTML = `<p>Error: Could not improve the text. Please try again later.</p>`;
+        });
+    });
+</script>
+</html>

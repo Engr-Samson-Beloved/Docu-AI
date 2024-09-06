@@ -28,34 +28,124 @@
         <section id="home" class="hero">
             <h1>Enhance Your Documentation with AI-Powered Assistance</h1>
             <p>Utilize specialized AI assistants to streamline your documentation tasks.</p>
-            <button class="cta-button">Get Started</button>
+            <button class="cta-button" id="Start">Get Started</button>
         </section>
+<!-- introduction aspect -->
+  <!-- Get Started Button -->
 
-        <section id="features" class="features">
+
+<!-- Introductory Pane -->
+<div id="intro-pane" class="intro-pane">
+    <div class="intro-slide" id="slide-1">
+        <h2>Welcome to Our App!</h2>
+        <p>Learn about our features and how they can help you.</p>
+        <button class="next-btn">Next</button>
+    </div>
+    <div class="intro-slide" id="slide-2">
+        <h2>Feature 1: Writing Assistance</h2>
+        <p>Improve your writing with our advanced assistance tool.</p>
+        <button class="next-btn">Next</button>
+    </div>
+    <div class="intro-slide" id="slide-3">
+        <h2>Feature 2: Summarization</h2>
+        <p>Get concise summaries of lengthy documents quickly.</p>
+        <button class="next-btn">Next</button>
+    </div>
+    <div class="intro-slide" id="slide-4">
+        <h2>Feature 3: Translation</h2>
+        <p>Translate text between different languages effortlessly.</p>
+        <button class="next-btn">Next</button>
+    </div>
+    <div class="intro-slide" id="slide-5">
+        <h2>Feature 4: Data Extraction</h2>
+        <p>Extract valuable data from your documents with ease.</p>
+        <button class="close-btn">Close</button>
+    </div>
+</div>
+
+<!-- to here -->
+<section id="features" class="features">
             <h2>Features</h2>
             <div class="feature-list">
-                <div class="feature-item">
+                <div class="feature-item" onclick="handleFeatureClick('Writing Assistance')">
                     <h3>Writing Assistance</h3>
                     <p>Generate content, improve grammar, and style.</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" onclick="handleFeatureClick('Summarization')">
                     <h3>Summarization</h3>
                     <p>Summarize long documents.</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" onclick="handleFeatureClick('Translation')">
                     <h3>Translation</h3>
                     <p>Translate documents into multiple languages.</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" onclick="handleFeatureClick('Data Extraction')">
                     <h3>Data Extraction</h3>
                     <p>Extract key information from documents.</p>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" onclick="handleFeatureClick('Formatting')">
                     <h3>Formatting</h3>
                     <p>Apply consistent formatting styles.</p>
                 </div>
             </div>
         </section>
+        
+        <div id="feature-modal" class="popup-modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title">Feature Title</h2>
+                <div id="writing-assistance" class="feature-pane">
+                    <h2>Writing Assistance</h2>
+                    <p>Generate content, improve grammar, or enhance writing style.</p>
+                    
+                    <label for="writing-input">Enter your text:</label>
+                    <textarea id="writing-input" rows="6" placeholder="Enter text here..."></textarea>
+                    
+                    <button id="writing-assist-btn">Improve My Writing</button>
+                    
+                    <h3>Improved Content:</h3>
+                    <div id="writing-output"></div>
+                </div>
+                <!-- Embed the feature content in an iframe -->
+                <iframe id="feature-frame" src="" frameborder="0" style="width: 100%; height: 450px;"></iframe>
+            </div>
+        </div>
+        
+        <!-- Summarization Feature Div -->
+<div id="summarization-feature" class="feature-modal">
+    <div class="feature-modal-content">
+        <span class="closesummary" onclick="closeFeatureModal('summarization-feature')">&times;</span>
+            <h2>Summarization Tool</h2>
+        <form id="summarization-form">
+            <label for="summarize-input">Enter Text to Summarize:</label>
+            <textarea id="summarize-input" rows="6" placeholder="Enter text here..."></textarea>
+            <button type="submit" class="summarize-button">Summarize</button>
+        </form>
+        <div id="summarize-output">
+            <h3>Summarized Text:</h3>
+            <p id="summary-result"></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Writing Assistance Section (div shown when the Writing Assistance feature is clicked) -->
+
+
+<!-- <div class="modal" id="summarization-feature">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('summarization-modal')">&times;</span>
+        <h2>Summarization Feature</h2>
+        <form id="summarization-form">
+            <label for="summarize-input">Enter the text to summarize:</label>
+            <textarea id="summarize-input" rows="5" required></textarea>
+            <button type="submit">Summarize</button>
+        </form>
+        <div id="summary-result" class="result"></div>
+    </div>
+</div> -->
+
+        
 
         <section id="testimonials" class="testimonials">
             <h2>What Our Users Say</h2>
@@ -137,31 +227,21 @@
 
     <script src="scripts.js"></script>
     <script>
-        document.getElementById('signin-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Simulate successful sign-in and redirect to the dashboard
-            window.location.href = 'dashboard.html';
-        });
+        // document.getElementById('signin-form').addEventListener('submit', function(event) {
+        //     event.preventDefault();
+        //     // Simulate successful sign-in and redirect to the dashboard
+        //     window.location.href = 'dashboard.html';
+        // });
 
-        document.getElementById('signup-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Handle sign-up process
-            alert('Sign Up Successful');
-        });
+        // document.getElementById('signup-form').addEventListener('submit', function(event) {
+        //     event.preventDefault();
+        //     // Handle sign-up process
+        //     alert('Sign Up Successful');
+        // });
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
+        // function closeModal(modalId) {
+        //     document.getElementById(modalId).style.display = 'none';
+        // }
     </script>
-<div id="author-popup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <img src="./`" alt="Author's Picture" class="profile-pic">
-        <h2>DocuAI - AI-Powered Documentation Assistant</h2>
-       <STrong> <p>DocuAI was developed to streamline and enhance the process of document creation, translation, summarization, and formatting with the power of specialized AI assistants. While it offers robust features, it's important to note that no AI is perfect. Users may still need to review and adjust the content generated, particularly in cases requiring a high level of nuance or domain-specific knowledge.</p></STrong>
-    </div>
-</div>
-
-    
 </body>
 </html>
