@@ -55,77 +55,77 @@ function closeModal(modalId) {
 //     }
 // }
 // Existing code
-window.onload = function() {
-    const modal = document.getElementById('feature-modal');
-    const closeButtons = document.querySelectorAll('.close');
+// window.onload = function() {
+//     const modal = document.getElementById('feature-modal');
+//     const closeButtons = document.querySelectorAll('.close');
     
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            closeModal();
-        });
-    });
+//     closeButtons.forEach(button => {
+//         button.addEventListener('click', function() {
+//             closeModal();
+//         });
+//     });
 
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    };
-};
+//     window.onclick = function(event) {
+//         if (event.target === modal) {
+//             closeModal();
+//         }
+//     };
+// };
 
 // Function to handle feature clicks and load external content
-function handleFeatureClick(featureName) {
-    const featurePages = {
-        "Writing Assistance": "write.html",
-        "Summarization": "search.html",
-        "Translation": "translation.html",
-        "Data Extraction": "data-extraction.html",
-        "Formatting": "format.html"
-    };
+// function handleFeatureClick(featureName) {
+//     const featurePages = {
+//         "Writing Assistance": "write.html",
+//         "Summarization": "search.html",
+//         "Translation": "translation.html",
+//         "Data Extraction": "data-extraction.html",
+//         "Formatting": "format.html"
+//     };
 
-    // Update the modal title with the feature name
-    document.getElementById('modal-title').innerText = featureName;
+//     // Update the modal title with the feature name
+//     document.getElementById('modal-title').innerText = featureName;
 
-    // Load the specific feature page into the iframe
-    document.getElementById('feature-frame').src = featurePages[featureName];
+//     // Load the specific feature page into the iframe
+//     document.getElementById('feature-frame').src = featurePages[featureName];
 
-    // Show the modal
-    document.getElementById('feature-modal').style.display = 'flex';
-}
+//     // Show the modal
+//     document.getElementById('feature-modal').style.display = 'flex';
+// }
 
-// Function to close the modal
-function closeModal() {
-    document.getElementById('feature-modal').style.display = 'none';
-}
+// // Function to close the modal
+// function closeModal() {
+//     document.getElementById('feature-modal').style.display = 'none';
+// }
 
-// Function to open the Summarization Feature modal
-function openSummarizationFeature() {
-    const modal = document.getElementById('summarization-feature');
-    if (modal) {
-        modal.style.display = 'flex';
-    }
-}
+// // Function to open the Summarization Feature modal
+// function openSummarizationFeature() {
+//     const modal = document.getElementById('summarization-feature');
+//     if (modal) {
+//         modal.style.display = 'flex';
+//     }
+// }
 
-// Function to close modals
-function closeFeatureModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'none';
-    }
-}
+// // Function to close modals
+// function closeFeatureModal(modalId) {
+//     const modal = document.getElementById(modalId);
+//     if (modal) {
+//         modal.style.display = 'none';
+//     }
+// }
 
-function closeModal() {
-    document.getElementById('feature-modal').style.display = 'none';
-}
+// function closeModal() {
+//     document.getElementById('feature-modal').style.display = 'none';
+// }
 
 
 
-// Function to close modals
-function closeFeatureModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'none';
-    }
-}
+// // Function to close modals
+// function closeFeatureModal(modalId) {
+//     const modal = document.getElementById(modalId);
+//     if (modal) {
+//         modal.style.display = 'none';
+//     }
+// }
 
 // Summarization API Integration
 // Function to handle the Summarization API request
@@ -174,51 +174,32 @@ document.getElementById('summarization-form').addEventListener('submit', async f
 
 
 
-// Event listener to show the Writing Assistance feature pane
-document.getElementById('writing-assist-feature').addEventListener('click', function() {
-    const featurePane = document.getElementById('writing-assistance');
+// Show the selected feature's popup
+let currentPopup = null;
+
+function showFeature(featureId) {
+    // Hide all popups
+    const popups = document.querySelectorAll('.feature-popup');
+    popups.forEach(popup => popup.style.display = 'none');
     
-    if (featurePane.style.display === 'block') {
-        featurePane.style.display = 'none';  // Close it if already open
-    } else {
-        featurePane.style.display = 'block';  // Open the pane if it's not visible
+    // Show the selected popup
+    currentPopup = document.getElementById(featureId);
+    if (currentPopup) {
+        currentPopup.style.display = 'block';
     }
-});
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const getStartedBtn = document.getElementById('Start');
-    const introPane = document.getElementById('intro-pane');
-    const slides = document.querySelectorAll('.intro-slide');
-    let currentSlide = 0;
-
-    getStartedBtn.addEventListener('click', () => {
-        introPane.style.display = 'flex';
-        showSlide(currentSlide);
+    // Add event listener to close the popup when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInside = currentPopup.contains(event.target) || event.target.closest('.feature-item');
+        if (!isClickInside) {
+            currentPopup.style.display = 'none';
+            currentPopup = null;
+        }
     });
+}
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-    }
 
-    document.querySelectorAll('.next-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            currentSlide++;
-            if (currentSlide >= slides.length) {
-                closeIntroPane();
-            } else {
-                showSlide(currentSlide);
-            }
-        });
-    });
 
-    document.querySelector('.close-btn').addEventListener('click', closeIntroPane);
 
-    function closeIntroPane() {
-        introPane.style.display = 'none';
-        currentSlide = 0; // Reset slide index for future use
-    }
-});
+
+
