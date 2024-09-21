@@ -1,248 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI-Powered Documentation Assistant</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-           #write-assistance {
-            display: block; /* Hidden until the feature is clicked */
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            max-width: 600px;
-            margin: 20px auto;
-        }
+      #write-assistance {
+        display: block; /* Hidden until the feature is clicked */
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        max-width: 600px;
+        margin: 20px auto;
+      }
 
-        #writing-input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-        }
+      #writing-input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
 
-        #writing-assist-btn {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+      #writing-assist-btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-        #writing-assist-btn:hover {
-            background-color: #0056b3;
-        }
+      #writing-assist-btn:hover {
+        background-color: #0056b3;
+      }
 
-        #writing-output {
-            margin-top: 20px;
-            background-color: #e9ecef;
-            padding: 10px;
-            border-radius: 4px;
-            white-space: pre-wrap;
-        }
+      #writing-output {
+        margin-top: 20px;
+        background-color: #e9ecef;
+        padding: 10px;
+        border-radius: 4px;
+        white-space: pre-wrap;
+      }
 
-        /* Search Pane */
-        #search-query {
-            width: calc(100% - 100px);
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-        #search-query:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        #search-button {
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-left: 10px;
-        }
-        #search-button:hover {
-            background-color: #0056b3;
-        }
-        #search-results {
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #f9f9f9;
-            height: 250px;
-            overflow-y: auto;
-        }
-        #search-results div {
-            margin-bottom: 15px;
-        }
-        #search-results a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        #search-results a:hover {
-            text-decoration: underline;
-        }
+      /* Search Pane */
+      #search-query {
+        width: calc(100% - 100px);
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
+      #search-query:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+      #search-button {
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left: 10px;
+      }
+      #search-button:hover {
+        background-color: #0056b3;
+      }
+      #search-results {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        height: 250px;
+        overflow-y: auto;
+      }
+      #search-results div {
+        margin-bottom: 15px;
+      }
+      #search-results a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      #search-results a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo">DocuAI</div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="auth-buttons">
-            <button class="sign-in">Sign In</button>
-            <button class="sign-up">Sign Up</button>
-        </div>
+      <div class="logo">DocuAI</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="sign-in">Sign In</button>
+        <button class="sign-up">Sign Up</button>
+      </div>
     </header>
 
     <main>
-        <section id="home" class="hero">
-            <h1>Enhance Your Documentation with AI-Powered Assistance</h1>
-            <p>Utilize specialized AI assistants to streamline your documentation tasks.</p>
-            <button class="cta-button" id="Start">Get Started</button>
-        </section>
-<!-- introduction aspect -->
-  <!-- Get Started Button -->
+      <section id="home" class="hero">
+        <h1>Enhance Your Documentation with AI-Powered Assistance</h1>
+        <p>
+          Utilize specialized AI assistants to streamline your documentation
+          tasks.
+        </p>
+        <button id="get-started-btn">Get Started</button>
+      </section>
+      <!-- Modal structure -->
+      <div id="bg-dim"></div>
+      <div id="info-container">
+        <img id="profile-image" src="SAMUEL.jpg" alt="Profile Picture" />
 
+        <!-- Info content sections -->
+        <div id="info-content">
+          <div class="info-section">
+            <h1>
+              This is the profile Okoro Samuel. He is passionate about [AI
+              Documentation Research purpose.
+            </h1>
+            <p>
+              The primary aim of this project is to develop an AI-powered
+              documentation assistant that revolutionizes the way organizations
+              manage, retrieve, and utilize information. This assistant will
+              leverage advanced AI technologies, including Natural Language
+              Processing (NLP) and machine learning, to provide accurate,
+              real-time responses to user queries, thereby enhancing operational
+              efficiency and decision-making processes.
+            </p>
+            <a href="#">Download write_Up Here</a>
+          </div>
+          <div class="info-section">
+            <h1>Use Of Features</h1>
+            <ul><li>Summarization</li>
+               <ul> <li>Pagarizism Chcek</li></ul>
+                <li>Translation</li>
+            </ul>
+          </div>
+          <div class="info-section">
+            Learn more about the vision and research behind it.
+          </div>
+        </div>
 
-<!-- Introductory Pane -->
-<div id="intro-pane" class="intro-pane">
-    <div class="intro-slide" id="slide-1">
-        <h2>Welcome to Our App!</h2>
-        <p>Learn about our features and how they can help you.</p>
-        <button class="next-btn">Next</button>
-    </div>
-    <div class="intro-slide" id="slide-2">
-        <h2>Feature 1: Writing Assistance</h2>
-        <p>Improve your writing with our advanced assistance tool.</p>
-        <button class="next-btn">Next</button>
-    </div>
-    <div class="intro-slide" id="slide-3">
-        <h2>Feature 2: Summarization</h2>
-        <p>Get concise summaries of lengthy documents quickly.</p>
-        <button class="next-btn">Next</button>
-    </div>
-    <div class="intro-slide" id="slide-4">
-        <h2>Feature 3: Translation</h2>
-        <p>Translate text between different languages effortlessly.</p>
-        <button class="next-btn">Next</button>
-    </div>
-    <div class="intro-slide" id="slide-5">
-        <h2>Feature 4: Data Extraction</h2>
-        <p>Extract valuable data from your documents with ease.</p>
-        <button class="close-btn">Close</button>
-    </div>
-</div>
+        <button id="continue-button">Next</button>
+      </div>
+      <!-- introduction aspect -->
+      <!-- Get Started Button -->
 
-<!-- to here -->
-<section id="features" class="features">
-    <h2>Features</h2>
-    <div class="feature-list">
-        <div class="feature-item" onclick="showFeature('writing-assistance')">
+      <!-- Introductory Pane -->
+      <div id="intro-pane" class="intro-pane">
+        <div class="intro-slide" id="slide-1">
+          <h2>Welcome to Our App!</h2>
+          <p>Learn about our features and how they can help you.</p>
+          <button class="next-btn">Next</button>
+        </div>
+        <div class="intro-slide" id="slide-2">
+          <h2>Feature 1: Writing Assistance</h2>
+          <p>Improve your writing with our advanced assistance tool.</p>
+          <button class="next-btn">Next</button>
+        </div>
+        <div class="intro-slide" id="slide-3">
+          <h2>Feature 2: Summarization</h2>
+          <p>Get concise summaries of lengthy documents quickly.</p>
+          <button class="next-btn">Next</button>
+        </div>
+        <div class="intro-slide" id="slide-4">
+          <h2>Feature 3: Translation</h2>
+          <p>Translate text between different languages effortlessly.</p>
+          <button class="next-btn">Next</button>
+        </div>
+        <div class="intro-slide" id="slide-5">
+          <h2>Feature 4: Data Extraction</h2>
+          <p>Extract valuable data from your documents with ease.</p>
+          <button class="close-btn">Close</button>
+        </div>
+      </div>
+
+      <!-- to here -->
+      <section id="features" class="features">
+        <h2>Features</h2>
+        <div class="feature-list">
+          <div class="feature-item" onclick="showFeature('writing-assistance')">
             <h3>Writing Assistance</h3>
             <p>Generate content, improve grammar, and style.</p>
-        </div>
-        <div class="feature-item" onclick="showFeature('summarization')">
+          </div>
+          <div class="feature-item" onclick="showFeature('summarization')">
             <h3>Summarization</h3>
             <p>Summarize long documents.</p>
-        </div>
-        <div class="feature-item" onclick="showFeature('translation')">
+          </div>
+          <div class="feature-item" onclick="showFeature('translation')">
             <h3>Translation</h3>
             <p>Translate documents into multiple languages.</p>
-        </div>
-        <div class="feature-item" onclick="showFeature('data-extraction')">
+          </div>
+          <div class="feature-item" onclick="showFeature('data-extraction')">
             <h3>Web Research</h3>
             <p>Search Previous Project related to yours.</p>
-        </div>
-        <div class="feature-item" onclick="showFeature('formatting')">
+          </div>
+          <div class="feature-item" onclick="showFeature('formatting')">
             <h3>Formatting</h3>
             <p>Apply consistent formatting styles.</p>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
 
-<!-- Popup Divs for each feature -->
-<div id="writing-assistance" class="feature-popup hidden">
-    <div id="write-assistance" class="feature-pane">
-        <h2>Writing Assistance</h2>
-        <p>Generate content, improve grammar, or enhance writing style.</p>
-        
-        <label for="writing-input">Enter your text:</label>
-        <textarea id="writing-input" rows="6" placeholder="Enter text here..."></textarea>
-        
-        <button id="writing-assist-btn">Improve My Writing</button>
-        
-        <h3>Improved Content:</h3>
-        <div id="writing-output"></div>
-    </div>  
-</div>
+      <!-- Popup Divs for each feature -->
+      <div id="writing-assistance" class="feature-popup hidden">
+        <div id="write-assistance" class="feature-pane">
+          <h2>Writing Assistance</h2>
+          <p>Generate content, improve grammar, or enhance writing style.</p>
 
-<div id="summarization" class="feature-popup hidden">
-    <h3>Summarization</h3>
-    <p>This feature summarizes long documents, giving you a concise version of the content.</p>
+          <label for="writing-input">Enter your text:</label>
+          <textarea
+            id="writing-input"
+            rows="6"
+            placeholder="Enter text here..."
+          ></textarea>
 
-</div>
+          <button id="writing-assist-btn">Improve My Writing</button>
 
-<div id="translation" class="feature-popup hidden">
-    <h3>Translation</h3>
-    <p>This feature translates documents into multiple languages, making your content more accessible.</p>
-</div>
+          <h3>Improved Content:</h3>
+          <div id="writing-output"></div>
+        </div>
+      </div>
 
-<div>
-    <div  id="data-extraction" class="feature-popup hidden">
-        <h1>Search Web</h1>
-        <input type="text" id="search-query" placeholder="Enter your search query" style="width: 80%; padding: 10px;">
-        <button id="search-button" style="padding: 10px;">Search</button>
-        <div id="search-results" contenteditable="true"></div>
-    </div>
+      <div id="summarization" class="feature-popup hidden">
+        <h3>Summarization</h3>
+        <p>
+          This feature summarizes long documents, giving you a concise version
+          of the content.
+        </p>
+      </div>
 
-</div>
+      <div id="translation" class="feature-popup hidden">
+        <h3>Translation</h3>
+        <p>
+          This feature translates documents into multiple languages, making your
+          content more accessible.
+        </p>
+      </div>
 
-<div id="formatting" class="feature-popup hidden">
-    <h3>Formatting</h3>
-    <p>Apply consistent formatting styles across your documents, ensuring a professional look.</p>
-</div>
+      <div>
+        <div id="data-extraction" class="feature-popup hidden">
+          <h1>Search Web</h1>
+          <input
+            type="text"
+            id="search-query"
+            placeholder="Enter your search query"
+            style="width: 80%; padding: 10px"
+          />
+          <button id="search-button" style="padding: 10px">Search</button>
+          <div id="search-results" contenteditable="true"></div>
+        </div>
+      </div>
 
-        
-        <!-- Summarization Feature Div -->
-<div id="summarization-feature" class="feature-modal">
-    <div class="feature-modal-content">
-        <span class="closesummary" onclick="closeFeatureModal('summarization-feature')">&times;</span>
-            <h2>Summarization Tool</h2>
-        <form id="summarization-form">
+      <div id="formatting" class="feature-popup hidden">
+        <h3>Formatting</h3>
+        <p>
+          Apply consistent formatting styles across your documents, ensuring a
+          professional look.
+        </p>
+      </div>
+
+      <!-- Summarization Feature Div -->
+      <div id="summarization-feature" class="feature-modal">
+        <div class="feature-modal-content">
+          <span
+            class="closesummary"
+            onclick="closeFeatureModal('summarization-feature')"
+            >&times;</span
+          >
+          <h2>Summarization Tool</h2>
+          <form id="summarization-form">
             <label for="summarize-input">Enter Text to Summarize:</label>
-            <textarea id="summarize-input" rows="6" placeholder="Enter text here..."></textarea>
+            <textarea
+              id="summarize-input"
+              rows="6"
+              placeholder="Enter text here..."
+            ></textarea>
             <button type="submit" class="summarize-button">Summarize</button>
-        </form>
-        <div id="summarize-output">
+          </form>
+          <div id="summarize-output">
             <h3>Summarized Text:</h3>
             <p id="summary-result"></p>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
 
+      <!-- Writing Assistance Section (div shown when the Writing Assistance feature is clicked) -->
 
-<!-- Writing Assistance Section (div shown when the Writing Assistance feature is clicked) -->
-
-
-<!-- <div class="modal" id="summarization-feature">
+      <!-- <div class="modal" id="summarization-feature">
     <div class="modal-content">
         <span class="close" onclick="closeModal('summarization-modal')">&times;</span>
         <h2>Summarization Feature</h2>
@@ -255,167 +315,202 @@
     </div>
 </div> -->
 
-        
+      <section id="testimonials" class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-list">
+          <div class="testimonial-item">
+            <p>
+              "DocuAI has revolutionized the way I handle documentation. It's a
+              game-changer!"
+            </p>
+            <span>- Alex D.</span>
+          </div>
+          <div class="testimonial-item">
+            <p>
+              "The AI assistants are incredibly helpful and save me so much
+              time."
+            </p>
+            <span>- Taylor S.</span>
+          </div>
+        </div>
+      </section>
 
-        <section id="testimonials" class="testimonials">
-            <h2>What Our Users Say</h2>
-            <div class="testimonial-list">
-                <div class="testimonial-item">
-                    <p>"DocuAI has revolutionized the way I handle documentation. It's a game-changer!"</p>
-                    <span>- Alex D.</span>
-                </div>
-                <div class="testimonial-item">
-                    <p>"The AI assistants are incredibly helpful and save me so much time."</p>
-                    <span>- Taylor S.</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+      <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
     </main>
 
     <footer>
-        <div class="footer-links">
-            <a href="#about">About</a>
-            <a href="#blog">Blog</a>
-            <a href="#careers">Careers</a>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Service</a>
-        </div>
-        <div class="social-media">
-            <a href="#"><img src="img/facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="img/twitter-icon.png" alt="Twitter"></a>
-            <a href="#"><img src="img/linkedin-icon.png" alt="LinkedIn"></a>
-        </div>
-        <div class="newsletter">
-            <input type="email" placeholder="Subscribe to our newsletter">
-            <button>Subscribe</button>
-        </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+        <a href="#careers">Careers</a>
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms of Service</a>
+      </div>
+      <div class="social-media">
+        <a href="#"><img src="img/facebook-icon.png" alt="Facebook" /></a>
+        <a href="#"><img src="img/twitter-icon.png" alt="Twitter" /></a>
+        <a href="#"><img src="img/linkedin-icon.png" alt="LinkedIn" /></a>
+      </div>
+      <div class="newsletter">
+        <input type="email" placeholder="Subscribe to our newsletter" />
+        <button>Subscribe</button>
+      </div>
     </footer>
 
     <!-- Modals -->
     <div id="signin-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('signin-modal')">&times;</span>
-            <h2>Sign In</h2>
-            <form id="signin-form">
-                <label for="signin-email">Email:</label>
-                <input type="email" id="signin-email" name="email" required>
-                <label for="signin-password">Password:</label>
-                <input type="password" id="signin-password" name="password" required>
-                <button type="submit">Sign In</button>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('signin-modal')">&times;</span>
+        <h2>Sign In</h2>
+        <form id="signin-form">
+          <label for="signin-email">Email:</label>
+          <input type="email" id="signin-email" name="email" required />
+          <label for="signin-password">Password:</label>
+          <input
+            type="password"
+            id="signin-password"
+            name="password"
+            required
+          />
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
     </div>
 
     <div id="signup-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('signup-modal')">&times;</span>
-            <h2>Sign Up</h2>
-            <form id="signup-form">
-                <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" name="email" required>
-                <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" name="password" required>
-                <label for="signup-confirm-password">Confirm Password:</label>
-                <input type="password" id="signup-confirm-password" name="confirm-password" required>
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('signup-modal')">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <label for="signup-email">Email:</label>
+          <input type="email" id="signup-email" name="email" required />
+          <label for="signup-password">Password:</label>
+          <input
+            type="password"
+            id="signup-password"
+            name="password"
+            required
+          />
+          <label for="signup-confirm-password">Confirm Password:</label>
+          <input
+            type="password"
+            id="signup-confirm-password"
+            name="confirm-password"
+            required
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
     </div>
 
     <script src="scripts.js"></script>
     <script>
-            const huggingFaceApiKey = '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';
-    const apiUrl = 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn'; // Example model for summarization, you can change it to another model if needed
+      const huggingFaceApiKey = "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";
+      const apiUrl =
+        "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"; // Example model for summarization, you can change it to another model if needed
 
-    // Function to handle the writing assistance request
-    document.getElementById('writing-assist-btn').addEventListener('click', function() {
-        const inputText = document.getElementById('writing-input').value;
+      // Function to handle the writing assistance request
+      document
+        .getElementById("writing-assist-btn")
+        .addEventListener("click", function () {
+          const inputText = document.getElementById("writing-input").value;
 
-        if (inputText.trim() === '') {
-            alert('Please enter some text.');
+          if (inputText.trim() === "") {
+            alert("Please enter some text.");
             return;
-        }
+          }
 
-        // Prepare the data for the API request
-        const data = {
-            inputs: inputText
-        };
+          // Prepare the data for the API request
+          const data = {
+            inputs: inputText,
+          };
 
-        // Call the Hugging Face API using fetch
-        fetch(apiUrl, {
-            method: 'POST',
+          // Call the Hugging Face API using fetch
+          fetch(apiUrl, {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${huggingFaceApiKey}`
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${huggingFaceApiKey}`,
             },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            // Display the improved content
-            const improvedText = result[0].summary_text ? result[0].summary_text.trim() : 'No enhancement available.';
-            document.getElementById('writing-output').innerHTML = `<p>${improvedText}</p>`;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('writing-output').innerHTML = `<p>Error: Could not improve the text. Please try again later.</p>`;
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              // Display the improved content
+              const improvedText = result[0].summary_text
+                ? result[0].summary_text.trim()
+                : "No enhancement available.";
+              document.getElementById(
+                "writing-output"
+              ).innerHTML = `<p>${improvedText}</p>`;
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById(
+                "writing-output"
+              ).innerHTML = `<p>Error: Could not improve the text. Please try again later.</p>`;
+            });
         });
-    });
 
-    // for search the web using googgle api
-    document.getElementById('search-button').addEventListener('click', function() {
-            const query = document.getElementById('search-query').value;
-            const apiKey = 'YOUR_API_KEY'; // Replace with your API key
-            const searchEngineId = 'YOUR_SEARCH_ENGINE_ID'; // Replace with your search engine ID
+      // for search the web using googgle api
+      document
+        .getElementById("search-button")
+        .addEventListener("click", function () {
+          const query = document.getElementById("search-query").value;
+          const apiKey = "YOUR_API_KEY"; // Replace with your API key
+          const searchEngineId = "YOUR_SEARCH_ENGINE_ID"; // Replace with your search engine ID
 
-            fetch(`https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&key=${'AIzaSyDHrGnvuUQd6-oD-AgQazK9LQYgvg1I5iU'}&cx=${'829db1a43afb74ca1'}`)
-                .then(response => response.json())
-                .then(data => {
-                    const resultsContainer = document.getElementById('search-results');
-                    resultsContainer.innerHTML = ''; // Clear previous results
+          fetch(
+            `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(
+              query
+            )}&key=${"AIzaSyDHrGnvuUQd6-oD-AgQazK9LQYgvg1I5iU"}&cx=${"829db1a43afb74ca1"}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              const resultsContainer =
+                document.getElementById("search-results");
+              resultsContainer.innerHTML = ""; // Clear previous results
 
-                    if (data.items) {
-                        data.items.forEach(item => {
-                            const result = document.createElement('div');
-                            result.innerHTML = `<strong><a href="${item.link}" target="_blank">${item.title}</a></strong><p>${item.snippet}</p>`;
-                            resultsContainer.appendChild(result);
-                        });
-                    } else {
-                        resultsContainer.innerText = 'No results found.';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
+              if (data.items) {
+                data.items.forEach((item) => {
+                  const result = document.createElement("div");
+                  result.innerHTML = `<strong><a href="${item.link}" target="_blank">${item.title}</a></strong><p>${item.snippet}</p>`;
+                  resultsContainer.appendChild(result);
                 });
+              } else {
+                resultsContainer.innerText = "No results found.";
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching search results:", error);
+            });
         });
-        // document.getElementById('signin-form').addEventListener('submit', function(event) {
-        //     event.preventDefault();
-        //     // Simulate successful sign-in and redirect to the dashboard
-        //     window.location.href = 'dashboard.html';
-        // });
+      // document.getElementById('signin-form').addEventListener('submit', function(event) {
+      //     event.preventDefault();
+      //     // Simulate successful sign-in and redirect to the dashboard
+      //     window.location.href = 'dashboard.html';
+      // });
 
-        // document.getElementById('signup-form').addEventListener('submit', function(event) {
-        //     event.preventDefault();
-        //     // Handle sign-up process
-        //     alert('Sign Up Successful');
-        // });
+      // document.getElementById('signup-form').addEventListener('submit', function(event) {
+      //     event.preventDefault();
+      //     // Handle sign-up process
+      //     alert('Sign Up Successful');
+      // });
 
-        // function closeModal(modalId) {
-        //     document.getElementById(modalId).style.display = 'none';
-        // }
+      // function closeModal(modalId) {
+      //     document.getElementById(modalId).style.display = 'none';
+      // }
     </script>
-</body>
+  </body>
 </html>

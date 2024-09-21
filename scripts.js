@@ -1,3 +1,42 @@
+document.addEventListener('DOMContentLoaded', function() {
+    let currentIndex = 0;
+    const infoContainer = document.getElementById('info-container');
+    const backgroundDim = document.getElementById('bg-dim');
+    const sections = document.querySelectorAll('#info-content .info-section');
+    const continueButton = document.getElementById('continue-button');
+  
+    // Show the section
+    function showSection(index) {
+      sections.forEach((section, i) => {
+        section.style.display = i === index ? 'block' : 'none';
+      });
+    }
+  
+    document.getElementById('get-started-btn').addEventListener('click', function() {
+      backgroundDim.classList.add('show');
+      infoContainer.classList.add('show');
+      showSection(currentIndex);
+    });
+  
+    continueButton.addEventListener('click', function() {
+      currentIndex++;
+      if (currentIndex < sections.length) {
+        showSection(currentIndex);
+      } else {
+        infoContainer.classList.remove('show');
+        backgroundDim.classList.remove('show');
+        currentIndex = 0; // Reset for next time
+      }
+    });
+  
+    backgroundDim.addEventListener('click', function() {
+      infoContainer.classList.remove('show');
+      backgroundDim.classList.remove('show');
+      currentIndex = 0;
+    });
+  });
+  
+//
 document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('nav ul');
     const navToggle = document.createElement('div');
@@ -58,7 +97,7 @@ function closeModal(modalId) {
 // window.onload = function() {
 //     const modal = document.getElementById('feature-modal');
 //     const closeButtons = document.querySelectorAll('.close');
-    
+
 //     closeButtons.forEach(button => {
 //         button.addEventListener('click', function() {
 //             closeModal();
@@ -129,11 +168,11 @@ function closeModal(modalId) {
 
 // Summarization API Integration
 // Function to handle the Summarization API request
-document.getElementById('summarization-form').addEventListener('submit', async function(event) {
+document.getElementById('summarization-form').addEventListener('submit', async function (event) {
     event.preventDefault();  // Prevent the form from submitting the usual way
 
     const inputText = document.getElementById('summarize-input').value;
-    
+
     if (!inputText.trim()) {
         alert("Please enter text to summarize.");
         return;
@@ -157,7 +196,7 @@ document.getElementById('summarization-form').addEventListener('submit', async f
 
         // Handle response
         const result = await response.json();
-        
+
         if (response.ok && result[0]?.summary_text) {
             // Output the summary
             document.getElementById('summary-result').innerText = result[0].summary_text;
@@ -181,7 +220,7 @@ function showFeature(featureId) {
     // Hide all popups
     const popups = document.querySelectorAll('.feature-popup');
     popups.forEach(popup => popup.style.display = 'none');
-    
+
     // Show the selected popup
     currentPopup = document.getElementById(featureId);
     if (currentPopup) {
@@ -189,7 +228,7 @@ function showFeature(featureId) {
     }
 
     // Add event listener to close the popup when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const isClickInside = currentPopup.contains(event.target) || event.target.closest('.feature-item');
         if (!isClickInside) {
             currentPopup.style.display = 'none';
