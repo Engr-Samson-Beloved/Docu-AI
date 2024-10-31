@@ -239,10 +239,23 @@
 
       <div id="summarization" class="feature-popup hidden">
         <h3>Summarization</h3>
-        <p>
-          This feature summarizes long documents, giving you a concise version
-          of the content.
-        </p>
+        <div id="write-assistance" class="feature-pane">
+          <h2>summarization-feature</h2>
+          <p>This feature summarizes long documents, giving you a concise version
+            of the content.</p>
+
+          <label for="writing-input">Enter your text:</label>
+          <textarea
+            id="writing-input"
+            rows="6"
+            placeholder="Copy Long Paragrapgh Text Here, To Avoid error..."
+          ></textarea>
+
+          <button id="writing-assist-btn">Summarize Paragrapgh</button>
+
+          <h3>Summarized Content:</h3>
+          <div id="writing-output"></div>
+        </div>
       </div>
 
       <div id="translation" class="feature-popup hidden">
