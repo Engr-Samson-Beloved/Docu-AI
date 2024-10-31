@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Text Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Add this button right after the opening body tag -->
+<button id="toggleSidebar" onclick="toggleSidebar()">☰</button>
+
+    <!-- Toolbar for formatting options -->
+    <div id="toolbar">
+        <!-- Add this inside the toolbar div in your HTML file -->
+<select id="fontSizeSelect" onchange="changeFontSize()">
+    <option value="1">Small</option>
+    <option value="3" selected>Normal</option>
+    <option value="5">Large</option>
+    <option value="7">Huge</option>
+</select>
+
+        <button onclick="formatText('bold')"><b>B</b></button>
+        <button onclick="formatText('italic')"><i>I</i></button>
+        <button onclick="formatText('underline')"><u>U</u></button>
+        <button onclick="formatText('justifyLeft')">Left</button>
+        <button onclick="formatText('justifyCenter')">Center</button>
+        <button onclick="formatText('justifyRight')">Right</button>
+        <button onclick="formatText('insertOrderedList')">OL</button>
+        <button onclick="formatText('insertUnorderedList')">UL</button>
+        <select id="fontSelect" onchange="changeFont()">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Verdana">Verdana</option>
+        </select>
+        <input type="color" id="textColor" onchange="changeTextColor()">
+        <input type="color" id="bgColor" onchange="changeBgColor()">
+        <input type="text" id="imageUrl" placeholder="Image URL">
+        <button onclick="insertImage()">Insert Image</button>
+        <button onclick="saveContent()">Save</button>
+    </div>
+    
+    <!-- Editable content area -->
+    <div id="editor" contenteditable="true">
+        Start writing here...
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
